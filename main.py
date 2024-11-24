@@ -18,17 +18,6 @@ def main():
     print("--- End report ---")
 
 
-def sort_on(characters_list):
-    return characters_list["num"]
-
-
-def chars_dict_to_sorted_list(num_chars_dict):
-    sorted_list = []
-    for ch in num_chars_dict:
-        sorted_list.append({"char": ch, "num": num_chars_dict[ch]})
-    sorted_list.sort(reverse=True, key=sort_on)
-    return sorted_list
-
 
 def get_book_text(path):
     with open(path) as f:
@@ -42,16 +31,26 @@ def get_num_words(text):
 
 def get_num_characters(text):
     characteres_count = {}    
-
     text = text.lower()
-
     for caractere in text:
         if caractere in characteres_count:
             characteres_count[caractere] += 1
         else:
             characteres_count[caractere] = 1
-
     return characteres_count
+
+
+def chars_dict_to_sorted_list(num_chars_dict):
+    sorted_list = []
+    for ch in num_chars_dict:
+        sorted_list.append({"char": ch, "num": num_chars_dict[ch]})
+    sorted_list.sort(reverse=True, key=sort_on)
+    return sorted_list
+
+
+def sort_on(characters_list):
+    return characters_list["num"]
+
 
 
 main()
